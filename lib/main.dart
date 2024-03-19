@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intro/homepage.dart';
+import 'package:intro/questions.dart';
 
 void main() {
-  runApp(MaterialApp(home: Homepage()));
+  runApp(const MaterialApp(home: QuestionsScreen()));
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intro/widgets/answer_button.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -7,15 +8,46 @@ class QuestionsScreen extends StatefulWidget {
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
 
-// 11:30
-// question_data.dart dosyasından gelen verileri oku
-// ekrana soruları sırayla yerleştir, her cevapta soruyu 1 artır
-// son soruya gelindiğinde ekrana BİTTİ yaz.
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  // Dosyadan veri çek
+  // Soruları tek tek ekranda göster.
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text("Soru gelicek.."),
+              AnswerButton(
+                  answerText: "Cevap 1",
+                  onClick: () {
+                    print("Cevap 1 tıklandı.");
+                  }),
+              AnswerButton(
+                  answerText: "Cevap 2",
+                  onClick: () {
+                    print("Cevap 2 tıklandı.");
+                  }),
+              AnswerButton(
+                  answerText: "Cevap 3",
+                  onClick: () {
+                    print("Cevap 3 tıklandı.");
+                  }),
+              AnswerButton(
+                  answerText: "Cevap 4",
+                  onClick: () {
+                    print("Cevap 4 tıklandı.");
+                  }),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
-// fstful
-// stful
+// Snippet
