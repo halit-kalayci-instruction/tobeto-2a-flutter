@@ -8,4 +8,5 @@ const questions = [
   Question(
       question: "Flutter hangi dili kullanır?",
       answers: ["javascript", "dart", "c#", "java"]),
+  Question(question: "Deneme", answers: ["a", "b", "c", "d", "e"]),
 ];

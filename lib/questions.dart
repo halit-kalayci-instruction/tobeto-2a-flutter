@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intro/data/question_data.dart';
 import 'package:intro/widgets/answer_button.dart';
 
 class QuestionsScreen extends StatefulWidget {
@@ -8,12 +9,28 @@ class QuestionsScreen extends StatefulWidget {
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
 
+// AppBar
+// Flutter'da sayfalar arası geçiş yöntemleri ve birbirlerine göre avantaj/dezavantajları ve kullanım oranları. (MEDIUM)
 class _QuestionsScreenState extends State<QuestionsScreen> {
   // Dosyadan veri çek
   // Soruları tek tek ekranda göster.
+  int currentQuestionIndex = 0; // O an kaçıncı soruda olduğumuz.
+  bool resultPage = false;
+  void answer() {
+    // Cevap verildiğinde verilen cevapları hafızada tut.
+    // Sonuç ekranını tasarlayınız.
+    setState(() {
+      if (currentQuestionIndex < questions.length - 1)
+        currentQuestionIndex++;
+      else
+        resultPage = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final currentQuestion = questions[currentQuestionIndex];
+
     return Scaffold(
       body: Center(
         child: Padding(
@@ -22,26 +39,28 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text("Soru gelicek.."),
+              Text(currentQuestion.question),
+              // Soruların cevap sayısı 3 ile 6 arasında değişebilir, cevap butonlarını dinamik bir şekilde gelecek
+              // şekilde kodlayınız..
               AnswerButton(
-                  answerText: "Cevap 1",
+                  answerText: currentQuestion.answers[0],
                   onClick: () {
-                    print("Cevap 1 tıklandı.");
+                    answer();
                   }),
               AnswerButton(
-                  answerText: "Cevap 2",
+                  answerText: currentQuestion.answers[1],
                   onClick: () {
-                    print("Cevap 2 tıklandı.");
+                    answer();
                   }),
               AnswerButton(
-                  answerText: "Cevap 3",
+                  answerText: currentQuestion.answers[2],
                   onClick: () {
-                    print("Cevap 3 tıklandı.");
+                    answer();
                   }),
               AnswerButton(
-                  answerText: "Cevap 4",
+                  answerText: currentQuestion.answers[3],
                   onClick: () {
-                    print("Cevap 4 tıklandı.");
+                    answer();
                   }),
             ],
           ),
