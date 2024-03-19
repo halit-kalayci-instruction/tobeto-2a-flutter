@@ -7,6 +7,7 @@ class QuestionsScreen extends StatefulWidget {
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
 
+// 11:30
 // question_data.dart dosyasından gelen verileri oku
 // ekrana soruları sırayla yerleştir, her cevapta soruyu 1 artır
 // son soruya gelindiğinde ekrana BİTTİ yaz.
