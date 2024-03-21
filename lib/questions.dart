@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro/data/question_data.dart';
+import 'package:intro/result_page.dart';
 import 'package:intro/widgets/answer_button.dart';
 
 class QuestionsScreen extends StatefulWidget {
@@ -16,9 +17,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   // Soruları tek tek ekranda göster.
   int currentQuestionIndex = 0; // O an kaçıncı soruda olduğumuz.
   bool resultPage = false;
-  void answer() {
+  int rightAnswerCount = 0, wrongAnswercount = 0;
+  void answer(String answer) {
     // Cevap verildiğinde verilen cevapları hafızada tut.
     // Sonuç ekranını tasarlayınız.
+    bool isTrue = answer == questions[currentQuestionIndex].answers[0];
+    isTrue ? rightAnswerCount++ : wrongAnswercount++; // ternary operator
     setState(() {
       if (currentQuestionIndex < questions.length - 1)
         currentQuestionIndex++;
@@ -30,6 +34,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   @override
   Widget build(BuildContext context) {
     final currentQuestion = questions[currentQuestionIndex];
+    // List<String> shuffledQuestions = currentQuestion.answers; // immutable // referans
+    List<String> shuffledQuestions = List.of(currentQuestion.answers);
+    shuffledQuestions.shuffle();
+
+    if (resultPage) {
+      return ResultPage(
+          rightAnswerCount: rightAnswerCount,
+          wrongAnswerCount: wrongAnswercount);
+    }
 
     return Scaffold(
       body: Center(
@@ -40,28 +53,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(currentQuestion.question),
-              // Soruların cevap sayısı 3 ile 6 arasında değişebilir, cevap butonlarını dinamik bir şekilde gelecek
-              // şekilde kodlayınız..
-              AnswerButton(
-                  answerText: currentQuestion.answers[0],
+              ...shuffledQuestions.map((question) => AnswerButton(
+                  answerText: question,
                   onClick: () {
-                    answer();
-                  }),
-              AnswerButton(
-                  answerText: currentQuestion.answers[1],
-                  onClick: () {
-                    answer();
-                  }),
-              AnswerButton(
-                  answerText: currentQuestion.answers[2],
-                  onClick: () {
-                    answer();
-                  }),
-              AnswerButton(
-                  answerText: currentQuestion.answers[3],
-                  onClick: () {
-                    answer();
-                  }),
+                    answer(question);
+                  }))
             ],
           ),
         ),
@@ -70,3 +66,4 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   }
 }
 // Snippet
+// Discord Pairler

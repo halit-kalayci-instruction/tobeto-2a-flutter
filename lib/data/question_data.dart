@@ -7,6 +7,6 @@ const questions = [
       answers: ["setState", "constructor", "readState", "writeState"]),
   Question(
       question: "Flutter hangi dili kullanır?",
-      answers: ["javascript", "dart", "c#", "java"]),
+      answers: ["dart", "javascript", "c#", "java"]),
   Question(question: "Deneme", answers: ["a", "b", "c", "d", "e"]),
 ];
